@@ -1,0 +1,43 @@
+For Event Page Extensions,
+we need to write our code in actionpage.js since
+popup.js is never accessible before activation
+
+This chrome API is used for activating the extensions at some particular page:
+
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  chrome.pageAction.show(tabs[0].id);
+});
+// It will be active at the current Tab only
+
+Content Scripts:
+
+They run in the context of the web Page.
+Can make Changes to the DOM
+It has certain API restrictions.
+It works parallely with the Event Page and the Popup Scripts.
+
+Execution Enviroment:
+
+It works in an isolated world
+Access to DOM
+No access to variables and functions
+Reverse holds good
+Button has alert on click from both webpage JS and CS, bot get called.
+
+Now,
+Specify the usage of "content_scripts" in the manifest
+These javascripts now can run on the partiicular URL
+
+Scripts in extensions:
+
+popup.js : Script used to define actions for the popup that appears on clicking the extension
+eventPage.js : It runs in background and has access to all Chrome APIs and is highlighted on when invoked
+options.js : Script used to define the actions in the options Page
+content.js : Script used to manipulate the DOM of the web Pages it has permission to do so.
+
+Content scripts send an receive msgs via chrome.runtime.sendMessage({})
+
+Msgs direction:
+
+From content.js -> eventPage.js
+From popup.js -> content.js

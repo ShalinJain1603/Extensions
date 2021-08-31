@@ -1,0 +1,21 @@
+{
+    "manifest_version":2,
+    "version":"1.0.0",
+    "name":"Wikit",
+    "description":"Wiki Search Extension",
+    "icons":{
+        "128":"icon128.png",
+        "48":"icon48.png",
+        "16":"icon16.png"
+    },
+    "background":
+    {
+        "scripts":["eventPage.js"],
+        "persistent":false
+    },
+    "permissions":
+        [
+            "tabs",
+            "contextMenus"
+        ]
+}

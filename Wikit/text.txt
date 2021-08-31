@@ -1,0 +1,15 @@
+This extension is neither browser action nor page action
+This will be grayed out at every moment 
+This can be accessed via Context Menus and it runs in the 
+background
+
+This will create a new Chrome Window with this data
+const createData = {
+      url: link to the webpage,
+      type: "popup",
+      top: 5,
+      left: 5,
+      width: screen.availWidth / 2,
+      height: screen.availHeight,
+    };
+chrome.windows.create(createData);

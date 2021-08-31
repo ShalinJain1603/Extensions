@@ -1,0 +1,79 @@
+We need to store data somewhere,
+so We are using Chrome APIs for that purpose
+
+We need to add permissions in our manifest for that.
+
+chrome.storage.sync.set/get are used to store data and retrieve data
+from the chrome storage
+chrome.storage.sync.set({key:value},(e)={optional})
+chrome.storage.sync.get("key",(e)=>{})
+
+Additional to UI page, an extension has an option page as well 
+It can be accessible via right click
+Firstly,
+we specify this in our manifest,
+"options_page":"options.html"
+
+Now we add notifications to our extension
+We set up the permissions for this in the manifest
+
+To create a notification,
+we use the chrome API notifications which we send us a notification
+chrome.notifications.create("id",notification_object)
+
+notification_object:
+{
+    type,
+    iconUrl,
+    title,
+    description
+}
+
+Event page v/s Background Page:
+
+Background Page are there in background which runs all the
+time and use resources, So it it better to stick to event 
+pages which are rendered only when required.
+
+Creating a context menu which will be rendered on right click 
+at any amount.
+It will be an event page
+
+Firstly,
+specify it in the manifest
+"background":{
+    "scripts":[some_script],
+    "persistent":false
+}
+"persistent":false -> Event Page
+"persistent":true -> Background Page
+
+Secondly,
+Give permissions for Context menu
+
+Now,
+In eventPage.js
+i) We create a contextItem = {
+    id,
+    title,
+    contexts{When you want this menu to be shown}
+}
+contexts ex. : selection,click,videoOn,etc
+
+Using chrome API chrome.contextMenus.create(contextItem)
+// This will add the Item into the menu
+
+chrome has another API which will look for items clicked On in 
+context menu
+chrome.contextMenus.onClicked.addListener((e)=>{})
+
+Adding total badge to display the spendings 
+
+chrome has many listener APIs which have a generalized code:
+chrome.storage.method/function.addListener((e)=>{})
+
+method/function : Ex. -> onClicked, onChanged, etc.
+
+To set a batch to an extension, we use the API call for badges,
+i.e.
+chrome.browserAction.setBadgeText({"text":something})

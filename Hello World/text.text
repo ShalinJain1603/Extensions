@@ -1,0 +1,33 @@
+Step 1:
+Confihure the manifest file.
+Mandatory information:
+i) "manifest_version":2,
+ii) name of the extension
+iii) Version of the extension
+
+Optional:
+i) description
+ii) icons
+iii) browser_action
+
+Step 2:
+Setting up the HTML for extension.
+Create a basic html page and set the default popup
+to this html page
+
+Step 3:
+Goto chrome://extensions
+Now,
+Switch to developer mode
+Now,
+Load unpacked extensions and navigate to out extension folder
+Now, 
+Select the folder and it it rendered
+
+Step 4:
+Creating a JS file to add some functionality
+i) We add a script tag in html.
+ii) We add the ref to the script file over there
+
+Step 5:
+Add some basic stylings

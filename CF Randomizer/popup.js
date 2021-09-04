@@ -5,6 +5,8 @@ const maxRating = document.querySelector("#maxRating");
 const radioButtons = document.querySelectorAll('input[name="index"]');
 const questionName = document.querySelector("#name");
 const questionTags = document.querySelector("#tags");
+const questionRating = document.querySelector("#rating");
+const foundQuestion = document.querySelector("#Answer");
 getLink.addEventListener("click", () => {
   let selectedIndex = "All";
   for (button of radioButtons) {
@@ -15,6 +17,17 @@ getLink.addEventListener("click", () => {
   }
   const lowerBar = parseInt(minRating.value) || 0;
   const upperBar = parseInt(maxRating.value) || 3600;
+  if (lowerBar > upperBar) {
+    minRating.value = "";
+    maxRating.value = "";
+    const notifications = {
+      type: "basic",
+      iconUrl: "icon48.png",
+      title: "Invalid Rating",
+      message: "Minimum Rating cannot be greater than maximum Rating",
+    };
+    chrome.notifications.create("limitnote", notifications);
+  }
   let myQuestions = QUESTIONS.filter(
     (question) => question.rating >= lowerBar && question.rating <= upperBar
   );
@@ -35,6 +48,8 @@ getLink.addEventListener("click", () => {
     tags = tags + tag + ", ";
   }
   questionTags.innerText = tags;
+  questionRating.innerText = myQuestions[randomNum].rating;
+  foundQuestion.style.display = "block";
 });
 
 foundLink.addEventListener("click", () => {

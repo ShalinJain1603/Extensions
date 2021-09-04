@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="popup.css">
     <script src="axios.min.js"></script>
 </head>
-<body>
+<body class="background">
     <div style="min-width:300px">
     <h2>Codeforces Randomizer</h2>
     <h3>Filters</h3>
@@ -27,13 +27,17 @@
     <label for="F">F</label>
 
     <h4>Select Rating Range</h4>
-    <input type="number" name="" id="minRating" style="max-width: 100px;"> -
-    <input type="number" name="" id="maxRating" style="max-width: 100px;">
+    <input type="number" name="" id="minRating" style="max-width: 100px;" placeholder="Minimum"> -
+    <input type="number" name="" id="maxRating" style="max-width: 100px;" placeholder="Maximum">
     <br>
     <button id = "getLink" class="getLink">Get Link</button>
+    <div id="Answer"  style="display: none;">
+    <hr>
     <h4 id="name"></h4>
     <h5 >Tags : <p id="tags" class="tags"></p></h5>
+    <h5>Rating : <p id="rating" class="tags"></p></h5>
     <a id="link"></a>
+    </div>
     </div>
     <script src = "questionBank.js"></script>
     <script src = "popup.js"></script>

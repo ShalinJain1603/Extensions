@@ -7,9 +7,14 @@
 
 .getLink {
     margin-top: 5px;
+    background-color: rgb(107, 103, 103);
+    color: aliceblue;
 }
 
 .tags {
     display: inline;
     font-weight: lighter;
+}
+.background {
+    background-color: rgb(236, 241, 241);
 }

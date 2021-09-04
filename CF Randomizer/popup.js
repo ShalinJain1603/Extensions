@@ -3,7 +3,8 @@ const foundLink = document.querySelector("#link");
 const minRating = document.querySelector("#minRating");
 const maxRating = document.querySelector("#maxRating");
 const radioButtons = document.querySelectorAll('input[name="index"]');
-
+const questionName = document.querySelector("#name");
+const questionTags = document.querySelector("#tags");
 getLink.addEventListener("click", () => {
   let selectedIndex = "All";
   for (button of radioButtons) {
@@ -28,6 +29,12 @@ getLink.addEventListener("click", () => {
   const link = `https://codeforces.com/problemset/problem/${contestId}/${index}`;
   foundLink.innerText = link;
   foundLink.href = link;
+  questionName.innerText = myQuestions[randomNum].name;
+  let tags = "";
+  for (tag of myQuestions[randomNum].tags) {
+    tags = tags + tag + ", ";
+  }
+  questionTags.innerText = tags;
 });
 
 foundLink.addEventListener("click", () => {

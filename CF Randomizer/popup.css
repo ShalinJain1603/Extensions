@@ -8,3 +8,8 @@
 .getLink {
     margin-top: 5px;
 }
+
+.tags {
+    display: inline;
+    font-weight: lighter;
+}

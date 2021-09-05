@@ -11,7 +11,8 @@
 <body class="background">
     <div style="min-width:300px">
     <h2>Codeforces Randomizer</h2>
-    <h3>Filters</h3>
+    <button id = "filterbtn" class="getLink">Filters</button>
+    <div style="display: none;" id="filters">
     <h4>Select Question Type</h4>
     <input type="radio" name="index" id="A">
     <label for="A">A</label>
@@ -30,6 +31,7 @@
     <input type="number" name="" id="minRating" style="max-width: 100px;" placeholder="Minimum"> -
     <input type="number" name="" id="maxRating" style="max-width: 100px;" placeholder="Maximum">
     <br>
+    </div>
     <button id = "getLink" class="getLink">Get Link</button>
     <div id="Answer"  style="display: none;">
     <hr>

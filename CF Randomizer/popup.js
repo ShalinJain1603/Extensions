@@ -7,6 +7,11 @@ const questionName = document.querySelector("#name");
 const questionTags = document.querySelector("#tags");
 const questionRating = document.querySelector("#rating");
 const foundQuestion = document.querySelector("#Answer");
+const filterbtn = document.querySelector("#filterbtn");
+const filter = document.querySelector("#filters");
+filterbtn.addEventListener("click", () => {
+  filter.style.display = "block";
+});
 getLink.addEventListener("click", () => {
   let selectedIndex = "All";
   for (button of radioButtons) {
@@ -47,7 +52,7 @@ getLink.addEventListener("click", () => {
   for (tag of myQuestions[randomNum].tags) {
     tags = tags + tag + ", ";
   }
-  questionTags.innerText = tags;
+  questionTags.innerText = tags.slice(0, tags.length - 2);
   questionRating.innerText = myQuestions[randomNum].rating;
   foundQuestion.style.display = "block";
 });

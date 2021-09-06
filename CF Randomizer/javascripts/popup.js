@@ -11,7 +11,7 @@ const filterbtn = document.querySelector("#filterbtn");
 const filter = document.querySelector("#filters");
 const timeRadioButtons = document.querySelectorAll('input[name="time"]');
 const Alltags = document.querySelector("#selectTag");
-
+const notFound = document.querySelector("#not_found");
 filterbtn.addEventListener("click", () => {
   filter.classList.toggle("togglefilter");
 });
@@ -67,20 +67,26 @@ getLink.addEventListener("click", () => {
       question.tags.includes(Alltags.value)
     );
   }
-  const randomNum = parseInt(Math.random() * myQuestions.length);
-  const contestId = myQuestions[randomNum].contestId;
-  const index = myQuestions[randomNum].index;
-  const link = `https://codeforces.com/problemset/problem/${contestId}/${index}`;
-  foundLink.innerText = link;
-  foundLink.href = link;
-  questionName.innerText = myQuestions[randomNum].name;
-  let tags = "";
-  for (tag of myQuestions[randomNum].tags) {
-    tags = tags + tag + ", ";
+  if (myQuestions.length === 0) {
+    notFound.style.display = "block";
+    foundQuestion.style.display = "none";
+  } else {
+    const randomNum = parseInt(Math.random() * myQuestions.length);
+    const contestId = myQuestions[randomNum].contestId;
+    const index = myQuestions[randomNum].index;
+    const link = `https://codeforces.com/problemset/problem/${contestId}/${index}`;
+    foundLink.innerText = link;
+    foundLink.href = link;
+    questionName.innerText = myQuestions[randomNum].name;
+    let tags = "";
+    for (tag of myQuestions[randomNum].tags) {
+      tags = tags + tag + ", ";
+    }
+    questionTags.innerText = tags.slice(0, tags.length - 2);
+    questionRating.innerText = myQuestions[randomNum].rating;
+    foundQuestion.style.display = "block";
+    notFound.style.display = "none";
   }
-  questionTags.innerText = tags.slice(0, tags.length - 2);
-  questionRating.innerText = myQuestions[randomNum].rating;
-  foundQuestion.style.display = "block";
 });
 
 foundLink.addEventListener("click", () => {

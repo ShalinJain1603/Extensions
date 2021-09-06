@@ -18,3 +18,7 @@
 .background {
     background-color: rgb(236, 241, 241);
 }
+
+.togglefilter {
+    display: none;
+}

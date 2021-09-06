@@ -9,15 +9,24 @@ const questionRating = document.querySelector("#rating");
 const foundQuestion = document.querySelector("#Answer");
 const filterbtn = document.querySelector("#filterbtn");
 const filter = document.querySelector("#filters");
+const timeRadioButtons = document.querySelectorAll('input[name="time"]');
+const Alltags = document.querySelector("#selectTag");
+
 filterbtn.addEventListener("click", () => {
-  filter.style.display = "block";
+  filter.classList.toggle("togglefilter");
 });
 getLink.addEventListener("click", () => {
   let selectedIndex = "All";
+  let selectedTime = "None";
   for (button of radioButtons) {
     if (button.checked) {
       selectedIndex = button.id;
       break;
+    }
+  }
+  for (button of timeRadioButtons) {
+    if (button.checked) {
+      selectedTime = button.id;
     }
   }
   const lowerBar = parseInt(minRating.value) || 0;
@@ -39,6 +48,23 @@ getLink.addEventListener("click", () => {
   if (selectedIndex !== "All") {
     myQuestions = myQuestions.filter(
       (question) => question.index === selectedIndex
+    );
+  }
+  if (selectedTime !== "None") {
+    if (selectedTime === "Old") {
+      myQuestions = myQuestions.filter((question) => question.contestId <= 500);
+    } else if (selectedTime === "Medium") {
+      myQuestions = myQuestions.filter(
+        (question) => question.contestId > 500 && question.contestId <= 1000
+      );
+    } else {
+      myQuestions = myQuestions.filter((question) => question.contestId > 1000);
+    }
+  }
+  if (Alltags.value !== "none") {
+    console.log("Entered");
+    myQuestions = myQuestions.filter((question) =>
+      question.tags.includes(Alltags.value)
     );
   }
   const randomNum = parseInt(Math.random() * myQuestions.length);
